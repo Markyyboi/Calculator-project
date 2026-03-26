@@ -9,7 +9,7 @@
 
 <div class="calculator">
 
-<input type="text" id="display" disabled>
+<input type="text" id="display" readonly aria-label="Calculator display">
 
 <div class="buttons">
 <button onclick="append('7')">7</button>
@@ -33,6 +33,11 @@
 <button onclick="append('+')">+</button>
 
 </div>
+</div>
+
+<div class="clipboard" style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end; width:92%; max-width:420px;">
+	<button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+	<button id="pasteBtn" onclick="pasteFromClipboard()">Paste</button>
 </div>
 
 <script src="script.js"></script>

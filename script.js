@@ -78,3 +78,58 @@ function adjustDisplay() {
 	// keep content anchored to the left
 	disp.scrollLeft = 0;
 }
+
+async function copyToClipboard() {
+	const disp = document.getElementById('display');
+	const btn = document.getElementById('copyBtn');
+	if (!disp) return;
+	const text = String(disp.value || '');
+	try {
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			await navigator.clipboard.writeText(text);
+		} else {
+			const ta = document.createElement('textarea');
+			ta.value = text;
+			document.body.appendChild(ta);
+			ta.select();
+			document.execCommand('copy');
+			document.body.removeChild(ta);
+		}
+		if (btn) {
+			const prev = btn.textContent;
+			btn.textContent = 'Copied!';
+			setTimeout(() => btn.textContent = prev, 900);
+		}
+	} catch (e) {
+		if (btn) {
+			const prev = btn.textContent;
+			btn.textContent = 'Failed';
+			setTimeout(() => btn.textContent = prev, 1200);
+		}
+	}
+}
+
+async function pasteFromClipboard() {
+	const disp = document.getElementById('display');
+	const btn = document.getElementById('pasteBtn');
+	if (!disp) return;
+	try {
+		let text = '';
+		if (navigator.clipboard && navigator.clipboard.readText) {
+			text = await navigator.clipboard.readText();
+		} else {
+			text = prompt('Paste expression:') || '';
+		}
+		// sanitize: allow digits, operators, parentheses, dot and spaces
+		const sanitized = (text || '').replace(/[^0-9+\-*/().\s]/g, '').trim();
+		if (!sanitized) {
+			if (btn) { const prev = btn.textContent; btn.textContent = 'No valid text'; setTimeout(() => btn.textContent = prev, 900); }
+			return;
+		}
+		disp.value = sanitized;
+		adjustDisplay();
+		if (btn) { const prev = btn.textContent; btn.textContent = 'Pasted'; setTimeout(() => btn.textContent = prev, 900); }
+	} catch (e) {
+		if (btn) { const prev = btn.textContent; btn.textContent = 'Failed'; setTimeout(() => btn.textContent = prev, 1200); }
+	}
+}
