@@ -16,10 +16,12 @@ function append(value){
 	}
 
 	disp.value += value;
+	adjustDisplay();
 }
 
 function clearDisplay(){
-document.getElementById("display").value = "";
+	document.getElementById("display").value = "";
+	adjustDisplay();
 }
 
 function calculate(){
@@ -52,7 +54,27 @@ function calculate(){
 		const result = Function('"use strict"; return (' + expr + ')')();
 		if (typeof result !== 'number' || !isFinite(result)) { showError(); return; }
 		disp.value = result;
+		adjustDisplay();
 	} catch (e) {
 		showError();
 	}
+}
+
+function adjustDisplay() {
+	const disp = document.getElementById('display');
+	if (!disp) return;
+	const val = String(disp.value || '');
+	// reset when short
+	if (val.length <= 12) {
+		disp.style.fontSize = '';
+		disp.scrollLeft = 0;
+		return;
+	}
+
+	// reduce font size progressively for long values
+	const extra = val.length - 12;
+	const newSize = Math.max(12, 20 - extra * 0.6);
+	disp.style.fontSize = newSize + 'px';
+	// keep content anchored to the left
+	disp.scrollLeft = 0;
 }
