@@ -11,6 +11,16 @@
 
 <input type="text" id="display" readonly aria-label="Calculator display">
 
+	<div class="controls" style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+		<div>
+			<button id="historyToggle" onclick="toggleHistory()">History</button>
+		</div>
+		<div style="display:flex; gap:8px;">
+			<button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+			<button id="pasteBtn" onclick="pasteFromClipboard()">Paste</button>
+		</div>
+	</div>
+
 <div class="buttons">
 <button onclick="append('7')">7</button>
 <button onclick="append('8')">8</button>
@@ -33,16 +43,6 @@
 <button onclick="append('+')">+</button>
 
 </div>
-</div>
-
-<div class="controls" style="width:92%; max-width:420px; margin-top:12px; display:flex; align-items:center; gap:8px;">
-	<div style="flex:1;">
-		<button id="historyToggle" onclick="toggleHistory()">History</button>
-	</div>
-	<div style="display:flex; gap:8px;">
-		<button id="copyBtn" onclick="copyToClipboard()">Copy</button>
-		<button id="pasteBtn" onclick="pasteFromClipboard()">Paste</button>
-	</div>
 </div>
 
 <script src="script.js"></script>

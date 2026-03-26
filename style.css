@@ -53,6 +53,17 @@ button {
 	transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
 }
 
+/* Controls inside calculator */
+.calculator .controls button {
+	height: 40px;
+	padding: 6px 12px;
+	font-size: 14px;
+	border-radius: 8px;
+	background: #eef7ff;
+}
+
+.calculator .controls button#historyToggle { background: #fff; }
+
 button:hover {
 	transform: translateY(-2px);
 	background: #e6f0fb;
