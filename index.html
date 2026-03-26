@@ -39,8 +39,25 @@
 	<button id="copyBtn" onclick="copyToClipboard()">Copy</button>
 	<button id="pasteBtn" onclick="pasteFromClipboard()">Paste</button>
 </div>
-
 <script src="script.js"></script>
+
+<div id="historyToggleWrap" style="width:92%; max-width:420px; margin-top:10px; display:flex; justify-content:flex-end;">
+	<button id="historyToggle" onclick="toggleHistory()">History</button>
+</div>
+
+<div id="historyPanel" style="display:none; width:92%; max-width:420px; margin-top:10px;">
+	<div class="history-header" style="display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 10px; background:rgba(11,116,255,0.04); border-radius:8px;">
+		<strong>History</strong>
+		<div style="display:flex; gap:8px;">
+			<button onclick="clearHistory()">Clear</button>
+			<button onclick="toggleHistory()">Close</button>
+		</div>
+	</div>
+	<ul id="historyList" class="history-list" style="list-style:none; margin:8px 0 0 0; padding:0; max-height:220px; overflow:auto; border-radius:8px;"></ul>
+</div>
+
+</body>
+</html>
 
 </body>
 </html>

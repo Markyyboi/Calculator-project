@@ -86,3 +86,17 @@ button:nth-child(15) {
 	#display { height: 50px; font-size: 18px; }
 	button { height: 50px; font-size: 16px; }
 }
+
+/* History list styles */
+.history-list li {
+	padding: 10px 12px;
+	border-bottom: 1px solid rgba(16,36,58,0.04);
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	align-items: center;
+	background: #ffffff;
+}
+.history-list li:hover { background: #f5fbff; cursor: pointer; }
+.history-item-expr { color: #123445; opacity: 0.9; font-size: 14px; }
+.history-item-res { color: #0b74ff; font-weight: 600; }
